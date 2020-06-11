@@ -64,6 +64,17 @@ public class Driver {
 		System.out.println("Enter Option: ");
 	}
 	
+	public static void findBook(List<BookItem> books, Scanner sc) {
+		System.out.println("#########################################################################################");
+		System.out.println("#####                                  FIND A BOOK                                  #####");
+		System.out.println("#########################################################################################");
+		System.out.println("Search titles: ");
+		
+		
+		System.out.println("---------- PRESS ENTER TO CONTINUE-------------");
+		sc.nextLine();
+	}
+	
 	public static void checkoutProcess(Member member, List<BookItem> books, Scanner sc) {
 		String barcode;
 		int numBooks;
