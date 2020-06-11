@@ -9,7 +9,7 @@ public class BookItem extends Book {
   private double price;
   private BookFormat format;
   private BookStatus status;
-  private String previousOwner;
+  private String currentOwner;
 
   BookItem(String _ISBN, String _title, String _author, Date borrowed, Date dueDate, boolean isReferenceOnly, String barcode) {
 		super(_ISBN, _title, _author);
@@ -21,7 +21,7 @@ public class BookItem extends Book {
 		price = 300;
 		format = BookFormat.HARDCOVER;
 		status = BookStatus.AVAILABLE;
-		previousOwner = "NIL";
+		currentOwner = "NIL";
   }
   
   public boolean canCheckout() {
@@ -52,12 +52,17 @@ public class BookItem extends Book {
       // convert calendar to date
       dueDate = c.getTime();
       
-      previousOwner = memberId;
+      currentOwner = memberId;
       
   }
+
   
   public String getCurrentOwner() {
-	  return previousOwner;
+	  return currentOwner;
+  }
+  
+  public void resetOwner() {
+	  currentOwner = "NIL";
   }
 
   public String getBarcode() {

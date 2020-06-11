@@ -140,12 +140,29 @@ public class Driver {
 		System.out.println("#########################################################################################");
 		System.out.println("#####                               RETURN  BOOKS                                   #####");
 		System.out.println("#########################################################################################");
+		
+		// Get the book barcode from the user
+		// Check if the barcode is valid
+		// 1) If barcode is valid ==> Check if bookitem has currentowner as member
+		//   										a) If yes => Check for fine!!! use Fine Class
+		//													then reset currentOwner and set BookStatus of BookItem to AVAILABLE
+		// 											b) Otherwise, mention member doesn't own the book
+		// 2) Otherwise mentione invalid barcode
+		// 3) Ask them to press enter to continue
 	}
 	
 	public static void renewBook(Member member, List<BookItem> books, Scanner sc) {
 		System.out.println("#########################################################################################");
 		System.out.println("#####                                 RENEW  BOOKS                                  #####");
 		System.out.println("#########################################################################################");
+		// Get the book barcode from the user
+		// Check if the barcode is valid
+		// 1) If barcode is valid ==> Check if bookitem has currentowner as member
+		//   										a) If yes => Check for fine!!! use Fine Class
+		//													then update dueDate of BookItem to new date
+		// 											b) Otherwise, mention member doesn't own the book
+		// 2) Otherwise mentione invalid barcode
+		// 3) Ask them to press enter to continue
 	}
 
 	public static void main(String[] args) {
