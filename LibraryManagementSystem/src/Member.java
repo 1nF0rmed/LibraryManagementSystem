@@ -49,11 +49,12 @@ public class Member extends Account {
   }
 
   public void returnBookItem(BookItem bookItem) {
-    
+	  this.totalBooksCheckedout--;
+	  bookItem.resetOwner();
   }
 
   public boolean renewBookItem(BookItem bookItem) {
-    
+    bookItem.updateDueDate();
     return true;
   }
 

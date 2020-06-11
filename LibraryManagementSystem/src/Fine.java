@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.time.temporal.ChronoUnit;
 
 public class Fine {
   private Date creationDate;
@@ -8,7 +9,7 @@ public class Fine {
   public static void collectFine(String memberId, BookItem book) {}
   
   private double calculateFine(Date expected, Date actual) {
-	  double fine = 0;
+	  double fine= 2 * ChronoUnit.DAYS.between(expected,actual);
 	  
 	  return fine;
   }

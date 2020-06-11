@@ -63,6 +63,7 @@ public class BookItem extends Book {
   
   public void resetOwner() {
 	  currentOwner = "NIL";
+	  status=BookStatus.AVAILABLE;
   }
 
   public String getBarcode() {
@@ -80,6 +81,10 @@ public class BookItem extends Book {
   
   public Date getDueDate() {
 	  return dueDate;
+  }
+  
+  public void updateDueDate() {
+	  dueDate.add(Calendar.DATE,10);
   }
   
 }

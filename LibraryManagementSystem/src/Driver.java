@@ -142,13 +142,48 @@ public class Driver {
 		System.out.println("#########################################################################################");
 		
 		// Get the book barcode from the user
+		String barcode;
+		System.out.println("\n Enter book barcode: ");
+		barcode = sc.nextLine();
+		
 		// Check if the barcode is valid
+		
 		// 1) If barcode is valid ==> Check if bookitem has currentowner as member
 		//   										a) If yes => Check for fine!!! use Fine Class
 		//													then reset currentOwner and set BookStatus of BookItem to AVAILABLE
 		// 											b) Otherwise, mention member doesn't own the book
-		// 2) Otherwise mentione invalid barcode
+		// 2) Otherwise mention invalid barcode
+		
+		
+		for(int j=0;j<books.size(); j++) {
+			
+			if( books.get(j).getBarcode().equals(barcode) ) {
+				
+				BookItem ret_book= books.get(j);
+				
+				if(ret_book.getCurrentOwner()== member) {
+					
+					if(after(ret_book.getDueDate())) {
+						Fine f= new Fine();
+						double fine = f.calculateFine(ret_book.getDueDate(),Date());
+						System.out.println("Please pay the fine for Rs. ", fine);
+					}
+					member.returnBookItem(ret_book);
+				}
+				else {
+					System.out.println("The member doesn't own this book!");
+				}
+				break;
+			}
+			else {
+				System.out.println("Invalid Barcode!");
+			}
+		}
+		
 		// 3) Ask them to press enter to continue
+		System.out.println("---------- PRESS ENTER TO CONTINUE-------------");
+		sc.nextLine();
+		
 	}
 	
 	public static void renewBook(Member member, List<BookItem> books, Scanner sc) {
@@ -157,12 +192,48 @@ public class Driver {
 		System.out.println("#########################################################################################");
 		// Get the book barcode from the user
 		// Check if the barcode is valid
+		String barcode;
+		System.out.println("\n Enter book barcode: ");
+		barcode = sc.nextLine();
+		
 		// 1) If barcode is valid ==> Check if bookitem has currentowner as member
 		//   										a) If yes => Check for fine!!! use Fine Class
 		//													then update dueDate of BookItem to new date
 		// 											b) Otherwise, mention member doesn't own the book
 		// 2) Otherwise mentione invalid barcode
+		
+		
+		for(int j=0;j<books.size(); j++) {
+			
+			if( books.get(j).getBarcode().equals(barcode) ) {
+				
+				BookItem ret_book= books.get(j);
+				
+				if(ret_book.getCurrentOwner()== member) {
+					
+					if(after(ret_book.getDueDate())) {
+						Fine f= new Fine();
+						double fine = f.calculateFine(ret_book.getDueDate(),Date());
+						System.out.println("Please pay the fine for Rs. ", fine);
+					}
+					member.renewBookItem(ret_book);
+					
+				}
+				else {
+					System.out.println("The member doesn't own this book!");
+				}
+				break;
+			}
+			else {
+				System.out.println("Invalid Barcode!");
+			}
+		}
+		
 		// 3) Ask them to press enter to continue
+		System.out.println("---------- PRESS ENTER TO CONTINUE-------------");
+		sc.nextLine();
+		
+		
 	}
 
 	public static void main(String[] args) {
