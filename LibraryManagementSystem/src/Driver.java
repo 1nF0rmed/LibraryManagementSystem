@@ -71,9 +71,20 @@ public class Driver {
 		System.out.println("#########################################################################################");
 		System.out.println("#####                             CHECK-OUT PROCESS                                 #####");
 		System.out.println("#########################################################################################");
+		while(true) {
 		System.out.println("Enter the number of books: ");
-		numBooks = sc.nextInt();
-		sc.nextLine();
+		
+			try {
+				numBooks = sc.nextInt();
+				sc.nextLine();
+				if( numBooks<1 )throw new Exception();
+				break;
+			} catch(Exception e) {
+				System.out.println("Please enter a proper value!");
+				sc.nextLine();
+			}
+		}
+		
 		
 		boolean canContinue = true;
 		
@@ -161,22 +172,20 @@ public class Driver {
 				
 				BookItem ret_book= books.get(j);
 				
-				if(ret_book.getCurrentOwner()== member) {
+				if( ret_book.getCurrentOwner().equals(member.getId()) ) {
 					
-					if(after(ret_book.getDueDate())) {
+					if(new Date().after(ret_book.getDueDate())) {
 						Fine f= new Fine();
-						double fine = f.calculateFine(ret_book.getDueDate(),Date());
-						System.out.println("Please pay the fine for Rs. ", fine);
+						double fine = f.calculateFine(ret_book.getDueDate(),new Date());
+						System.out.println("Please pay the fine for Rs. "+fine);
 					}
 					member.returnBookItem(ret_book);
+					System.out.println("Returning book: "+ret_book.getBookTitle());
 				}
 				else {
 					System.out.println("The member doesn't own this book!");
 				}
 				break;
-			}
-			else {
-				System.out.println("Invalid Barcode!");
 			}
 		}
 		
@@ -209,23 +218,21 @@ public class Driver {
 				
 				BookItem ret_book= books.get(j);
 				
-				if(ret_book.getCurrentOwner()== member) {
+				if( ret_book.getCurrentOwner().equals(member.getId()) ) {
 					
-					if(after(ret_book.getDueDate())) {
+					if(new Date().after(ret_book.getDueDate())) {
 						Fine f= new Fine();
-						double fine = f.calculateFine(ret_book.getDueDate(),Date());
-						System.out.println("Please pay the fine for Rs. ", fine);
+						double fine = f.calculateFine(ret_book.getDueDate(),new Date());
+						System.out.println("Please pay the fine for Rs. "+fine);
 					}
 					member.renewBookItem(ret_book);
+					System.out.println("Renewing book: "+ret_book.getBookTitle());
 					
 				}
 				else {
 					System.out.println("The member doesn't own this book!");
 				}
 				break;
-			}
-			else {
-				System.out.println("Invalid Barcode!");
 			}
 		}
 		

@@ -84,7 +84,23 @@ public class BookItem extends Book {
   }
   
   public void updateDueDate() {
-	  dueDate.add(Calendar.DATE,10);
+	  
+	// Convert date to calendar
+      Calendar c = Calendar.getInstance();
+      c.setTime(dueDate);
+      // Add 10 days 
+      c.add(Calendar.DATE, 10);
+      // convert calendar to date
+      Date newDueDate = c.getTime();
+      
+      long difference = newDueDate.getTime() - new Date().getTime();
+	  // Divide to get number of days
+	  double numDays = ( difference/(1000*60*60*24) );
+	  
+	  if( numDays<=10 )
+		  dueDate=c.getTime();
+	  else
+		  System.out.println("Too early to renew the book. Please come back later.");
   }
   
 }
