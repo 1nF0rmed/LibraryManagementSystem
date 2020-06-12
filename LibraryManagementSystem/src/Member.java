@@ -54,8 +54,7 @@ public class Member extends Account {
   }
 
   public boolean renewBookItem(BookItem bookItem) {
-    bookItem.updateDueDate();
-    return true;
+    return bookItem.updateDueDate();
   }
 
 @Override

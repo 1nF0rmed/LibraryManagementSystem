@@ -109,7 +109,7 @@ public class Driver {
 					else {
 						
 						// If unable to checkout
-						if( member.getTotalBooksCheckedOut()>2 ) {
+						if( member.getTotalBooksCheckedOut()>=2 ) {
 							System.out.print("Unable to checkout: Number of books exceed 2!!");
 							canContinue = false;
 						}
@@ -225,8 +225,8 @@ public class Driver {
 						double fine = f.calculateFine(ret_book.getDueDate(),new Date());
 						System.out.println("Please pay the fine for Rs. "+fine);
 					}
-					member.renewBookItem(ret_book);
-					System.out.println("Renewing book: "+ret_book.getBookTitle());
+					if( member.renewBookItem(ret_book) )
+						System.out.println("Renewing book: "+ret_book.getBookTitle());
 					
 				}
 				else {

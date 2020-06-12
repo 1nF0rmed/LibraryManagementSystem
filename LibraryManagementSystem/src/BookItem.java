@@ -83,7 +83,7 @@ public class BookItem extends Book {
 	  return dueDate;
   }
   
-  public void updateDueDate() {
+  public boolean updateDueDate() {
 	  
 	// Convert date to calendar
       Calendar c = Calendar.getInstance();
@@ -99,8 +99,12 @@ public class BookItem extends Book {
 	  
 	  if( numDays<=10 )
 		  dueDate=c.getTime();
-	  else
+	  else {
 		  System.out.println("Too early to renew the book. Please come back later.");
+		  return false;
+	  }
+	  
+	  return true;
   }
   
 }
